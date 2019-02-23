@@ -8,7 +8,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Spinner android:layout_height="50dp"
+        <ProgressBar
+            android:id="@+id/progress_bar_activity_faculty"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="gone"
+            android:indeterminate="true"/>
+
+        <Spinner android:layout_height="50dp"
         android:layout_width="match_parent"
         android:id="@+id/spinner"
         android:layout_margin="30dp"
