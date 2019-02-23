@@ -1,6 +1,7 @@
 package com.example.hp.indoornavclientapp.model;
 
 public class WapModel {
+    private int id;
     private String building;
     private String macAddr;
     private String floor;
@@ -8,10 +9,19 @@ public class WapModel {
     WapModel() {
 
     }
-    WapModel(String building,String macAddr,String floor) {
+    WapModel(int id,String building,String macAddr,String floor) {
+        this.id = id;
         this.building = building;
         this.macAddr = macAddr;
         this.floor = floor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBuilding() {
