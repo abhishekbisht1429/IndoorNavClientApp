@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
     <LinearLayout android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"

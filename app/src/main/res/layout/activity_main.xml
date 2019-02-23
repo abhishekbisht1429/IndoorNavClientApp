@@ -5,12 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:background="@drawable/background"
 
     >
-
-
 
 
     <ImageView
@@ -18,12 +16,13 @@
         android:layout_width="162dp"
         android:layout_height="132dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="8dp"
+        android:src="@drawable/finallogo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -50,13 +49,13 @@
             />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_find_guards"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/button_bg_rounded_corners"
             android:text="Find Security Guards"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark" />
 
         <Button
             android:id="@+id/button3"

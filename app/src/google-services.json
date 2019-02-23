@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "521796220481",
+    "firebase_url": "https://indoortracker-9868e.firebaseio.com",
+    "project_id": "indoortracker-9868e",
+    "storage_bucket": "indoortracker-9868e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521796220481:android:c4cd951fce02dd20",
+        "android_client_info": {
+          "package_name": "com.example.hp.indoornavclientapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521796220481-rub1m63s0bct70vd7beu582k3gsr67nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACFtk5tRIV8i5OxQpInh1JSBYXmyoQ-tw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521796220481:android:f2b168a3ac7acbf1",
+        "android_client_info": {
+          "package_name": "com.example.indoortracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521796220481-rub1m63s0bct70vd7beu582k3gsr67nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACFtk5tRIV8i5OxQpInh1JSBYXmyoQ-tw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

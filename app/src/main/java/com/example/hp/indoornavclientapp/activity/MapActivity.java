@@ -1,4 +1,4 @@
-package com.example.hp.indoornavclientapp;
+package com.example.hp.indoornavclientapp.activity;
 
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.hp.indoornavclientapp.R;
 import com.example.hp.indoornavclientapp.model.WapModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +34,7 @@ public class MapActivity extends AppCompatActivity {
         employeeId = args.getString(EMPLOYEE_ID_PARCEL_KEY);
 
         marker = new ImageView(this);
-        marker.setImageResource(R.drawable.logo1);
+        marker.setImageResource(R.drawable.radar);
         marker.setId(MARKER_ID);
         parent.addView(marker);
         conSet = new ConstraintSet();
@@ -107,13 +108,5 @@ public class MapActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state);
         state.putString(EMPLOYEE_ID_PARCEL_KEY,employeeId);
-    }
-
-    private class Coordinates {
-        int x,y;
-        Coordinates(int x,int y) {
-            this.x = x;
-            this.y = y;
-        }
     }
 }

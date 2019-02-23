@@ -1,4 +1,4 @@
-package com.example.hp.indoornavclientapp;
+package com.example.hp.indoornavclientapp.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,12 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hp.indoornavclientapp.R;
 import com.example.hp.indoornavclientapp.model.Employee;
 import com.example.hp.indoornavclientapp.model.WapModel;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EmptyStackException;
 import java.util.List;
 
 public class FacultyActivity extends AppCompatActivity {
@@ -72,7 +69,9 @@ public class FacultyActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             List<Employee> employees = new ArrayList<>();
                             for(DataSnapshot ds:dataSnapshot.getChildren()) {
-                                employees.add(ds.getValue(Employee.class));
+                                Employee emp = ds.getValue(Employee.class);
+                                if(emp.getType().equals("faculty"))
+                                    employees.add(emp);
                             }
                             Log.i(TAG,employees.size()+"");
                             facultyAdapter.setEmployees(employees);
@@ -103,7 +102,7 @@ public class FacultyActivity extends AppCompatActivity {
                             WapModel wapModel = dataSnapshot.getValue(WapModel.class);
                             if(wapModel!=null) {
                                 showToast(wapModel.getBuilding()+" "+wapModel.getFloor()+" "+wapModel.getMacAddr());
-                                Intent intent = new Intent(FacultyActivity.this,MapActivity.class);
+                                Intent intent = new Intent(FacultyActivity.this, MapActivity.class);
                                 intent.putExtra(MapActivity.EMPLOYEE_ID_PARCEL_KEY,employee.getEmployeeId());
                                 startActivity(intent);
                             } else {
@@ -175,12 +174,14 @@ public class FacultyActivity extends AppCompatActivity {
         }
 
         private class ItemViewHolder extends RecyclerView.ViewHolder{
-            TextView textView;
+            TextView textViewId;
+            TextView textViewName;
             Employee employee;
             public ItemViewHolder(@NonNull View itemView) {
                 super(itemView);
-                textView = itemView.findViewById(R.id.text_view_item_layout_faculty);
-                textView.setOnClickListener(new View.OnClickListener() {
+                textViewId = itemView.findViewById(R.id.text_view_item_layout_faculty);
+                textViewName = itemView.findViewById(R.id.text_view_name);
+                itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         onEmployeeSelect(employee);
@@ -189,7 +190,8 @@ public class FacultyActivity extends AppCompatActivity {
             }
 
             public void bindData(Employee employee) {
-                textView.setText(employee.getEmployeeId());
+                textViewId.setText(employee.getEmployeeId());
+                textViewName.setText(employee.getName());
                 this.employee = employee;
             }
         }
