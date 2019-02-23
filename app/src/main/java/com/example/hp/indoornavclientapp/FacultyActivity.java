@@ -1,5 +1,6 @@
 package com.example.hp.indoornavclientapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,12 +38,14 @@ public class FacultyActivity extends AppCompatActivity {
 
     private static final String TAG = "FacultyActivity";
     RecyclerView search_faculty;
-        FacultyAdapter facultyAdapter;
+    FacultyAdapter facultyAdapter;
+    ProgressBar progressBar;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_faculty);
             Spinner spinner=findViewById(R.id.spinner);
+            progressBar = findViewById(R.id.progress_bar_activity_faculty);
             ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,R.array.departments,android.R.layout.simple_spinner_item);
             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter1);
@@ -57,17 +61,10 @@ public class FacultyActivity extends AppCompatActivity {
                 }
             });
             search_faculty=findViewById(R.id.Faculty);
-//            ArrayList<String> arrayFaculty = new ArrayList<>();
-//            for(int i=0;i<6;++i)
-//                arrayFaculty.add("Faculty "+i);
-//            adapter = new ArrayAdapter<String>(
-//                    FacultyActivity.this,
-//                    android.R.layout.simple_list_item_1,
-//                    arrayFaculty
-//            );
             facultyAdapter = new FacultyAdapter();
             search_faculty.setLayoutManager(new LinearLayoutManager(this));
             search_faculty.setAdapter(facultyAdapter);
+            showProgress(true);
             FirebaseDatabase.getInstance().getReference()
                     .child("employee_db")
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -79,6 +76,7 @@ public class FacultyActivity extends AppCompatActivity {
                             }
                             Log.i(TAG,employees.size()+"");
                             facultyAdapter.setEmployees(employees);
+                            showProgress(false);
                         }
 
                         @Override
@@ -88,7 +86,12 @@ public class FacultyActivity extends AppCompatActivity {
                     });
         }
 
-        void onEmployeeSelect(Employee employee) {
+        void showProgress(boolean show) {
+            progressBar.setVisibility(show?View.VISIBLE:View.GONE);
+        }
+
+        void onEmployeeSelect(final Employee employee) {
+            showProgress(true);
             showToast(employee.getEmployeeId());
             FirebaseDatabase.getInstance().getReference()
                     .child("location_table")
@@ -96,9 +99,13 @@ public class FacultyActivity extends AppCompatActivity {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            showProgress(false);
                             WapModel wapModel = dataSnapshot.getValue(WapModel.class);
                             if(wapModel!=null) {
                                 showToast(wapModel.getBuilding()+" "+wapModel.getFloor()+" "+wapModel.getMacAddr());
+                                Intent intent = new Intent(FacultyActivity.this,MapActivity.class);
+                                intent.putExtra(MapActivity.EMPLOYEE_ID_PARCEL_KEY,employee.getEmployeeId());
+                                startActivity(intent);
                             } else {
                                 showToast("location not found");
                             }
@@ -106,6 +113,7 @@ public class FacultyActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                            showProgress(false);
                             databaseError.toException().printStackTrace();
                         }
                     });
