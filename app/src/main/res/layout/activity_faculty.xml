@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:id="@+id/spinner"
         android:layout_margin="30dp"
-        android:backgroundTint="@color/colorPrimary"
-         > </Spinner>
+        android:backgroundTint="@color/colorPrimary">
+    </Spinner>
 
     <ListView android:layout_height="match_parent"
         android:layout_width="wrap_content"
