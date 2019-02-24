@@ -34,7 +34,7 @@ public class MapActivity extends AppCompatActivity {
         employeeId = args.getString(EMPLOYEE_ID_PARCEL_KEY);
 
         marker = new ImageView(this);
-        marker.setImageResource(R.drawable.radar);
+        marker.setImageResource(R.drawable.radarone);
         marker.setId(MARKER_ID);
         parent.addView(marker);
         conSet = new ConstraintSet();

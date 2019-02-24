@@ -145,7 +145,7 @@ public class GuardsActivity extends AppCompatActivity {
 
     void plotMarker(int x,int y) {
         ImageView marker = new ImageView(this);
-        marker.setImageResource(R.drawable.radar2);
+        marker.setImageResource(R.drawable.radarone);
         marker.setId(idcount++);
         parent.addView(marker);
         ConstraintSet conSet = new ConstraintSet();

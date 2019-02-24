@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:id="@+id/spinner"
         android:layout_margin="30dp"
-        android:backgroundTint="@color/colorPrimary">
+        android:background="@color/colorPrimary">
     </Spinner>
 
     <android.support.v7.widget.RecyclerView
